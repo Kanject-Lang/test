@@ -2,6 +2,7 @@ package com.kanject.test.websocket;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.websocket.*;
@@ -16,7 +17,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CopyOnWriteArraySet;
 
 /**
- * TODO
+ * websocket聊天室
  *
  * @author guangjie.liang
  * @date 2021/01/13 16:14:12
@@ -48,6 +49,11 @@ public class UserServerEndpoint {
     public void onOpen(Session session, @PathParam("username") String username) {
         this.session = session;
         this.username = username;
+        if (userMap.containsKey("@" + this.username)) {
+            sendMessage(String.format("用户[%s]已在线", this.username));
+            log.info(String.format("User[%s] already log in.", this.username));
+            return;
+        }
         userMap.put("@" + this.username, this);
 //        atUsernameList.add("@" + this.username);
         onlineCountIncrease();
@@ -90,29 +96,57 @@ public class UserServerEndpoint {
         }
 
         if (!message.contains("@")) {//消息文本中不含'@'，直接广播消息
-            broadcast(message);
+            multicast(this.username, message);
         } else {//消息文本中包含'@'，执行以下逻辑
-            boolean broadcastFlag = true;
+            boolean multicastFlag = true;
             for (String atUsername : userMap.keySet()) {
                 if (message.contains(atUsername)) {
-                    broadcastFlag = false;
+                    multicastFlag = false;
                     log.info("@ user =====> [{}]", atUsername.substring(1));
 //                    userMap.get(atUsername.substring(1)).sendMessage(message);
-                    userMap.get(atUsername).sendMessage(message);
+                    userMap.get(atUsername).unicast(this.username, message);
                 }
             }
-            if (broadcastFlag) {
-                broadcast(message);
+            if (multicastFlag) {
+                multicast(this.username, message);
             }
         }
     }
 
     /**
-     * 广播消息
+     * 推送消息到所有用户(公有静态，供其他类调用)
+     */
+    public static void messagePush(String message) {
+        for (String key : userMap.keySet()) {
+            userMap.get(key).sendMessage(message);
+        }
+    }
+
+    /**
+     * 广播消息(系统 -> 所有用户)
      */
     private void broadcast(String message) {
         for (String key : userMap.keySet()) {
             userMap.get(key).sendMessage(message);
+        }
+    }
+
+    /**
+     * 单播消息(用户 -> 用户)
+     */
+    private void unicast(String sender, String message) {
+        sendMessage(sender + ": " + message);
+    }
+
+    /**
+     * 多播消息(用户 -> 除自身外的所有用户)
+     */
+    private void multicast(String sender, String message) {
+        for (String key : userMap.keySet()) {
+            if (key.equals("@" + this.username)) {
+                continue;
+            }
+            userMap.get(key).unicast(sender, message);
         }
     }
 
