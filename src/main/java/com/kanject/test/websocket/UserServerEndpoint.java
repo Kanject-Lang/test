@@ -33,9 +33,6 @@ public class UserServerEndpoint {
     /** 用户-websocket服务端 Map */
     private static Map<String, UserServerEndpoint> userMap = new ConcurrentHashMap<>();
 
-//    /** 用户名set，艾特用户的时候用到 */
-//    private static List<String> atUsernameList = new CopyOnWriteArrayList<>();
-
     /** 记录用户会话，实例变量，每个用户一个 */
     private Session session;
 
@@ -49,13 +46,12 @@ public class UserServerEndpoint {
     public void onOpen(Session session, @PathParam("username") String username) {
         this.session = session;
         this.username = username;
-        if (userMap.containsKey("@" + this.username)) {
+        if (userMap.containsKey(wrapUsername(this.username))) {
             sendMessage(String.format("用户[%s]已在线", this.username));
             log.info(String.format("User[%s] already log in.", this.username));
             return;
         }
-        userMap.put("@" + this.username, this);
-//        atUsernameList.add("@" + this.username);
+        userMap.put(wrapUsername(this.username), this);
         onlineCountIncrease();
         broadcast(String.format("[%s]进入了聊天室, 当前聊天室人数为[%d]", this.username, getOnlineCount()));
         log.info(String.format("[%s]进入了聊天室, 当前聊天室人数为[%d]", this.username, getOnlineCount()));
@@ -67,8 +63,7 @@ public class UserServerEndpoint {
      */
     @OnClose
     public void onClose() {
-        userMap.remove("@" + this.username);
-//        atUsernameList.remove("@" + this.username);
+        userMap.remove(wrapUsername(this.username));
         onlineCountDecrease();
         broadcast(String.format("[%s]退出了聊天室, 当前聊天室人数为[%d]", this.username, getOnlineCount()));
         log.info(String.format("[%s]退出了聊天室, 当前聊天室人数为[%d]", this.username, getOnlineCount()));
@@ -103,7 +98,6 @@ public class UserServerEndpoint {
                 if (message.contains(atUsername)) {
                     multicastFlag = false;
                     log.info("@ user =====> [{}]", atUsername.substring(1));
-//                    userMap.get(atUsername.substring(1)).sendMessage(message);
                     userMap.get(atUsername).unicast(this.username, message);
                 }
             }
@@ -143,19 +137,29 @@ public class UserServerEndpoint {
      */
     private void multicast(String sender, String message) {
         for (String key : userMap.keySet()) {
-            if (key.equals("@" + this.username)) {
+            if (key.equals(wrapUsername(this.username))) {
                 continue;
             }
             userMap.get(key).unicast(sender, message);
         }
     }
 
+    /**
+     * 向本实例的客户端发送消息
+     */
     private void sendMessage(String message) {
         try {
             this.session.getBasicRemote().sendText(message);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 包装用户名
+     */
+    public static String wrapUsername(String username) {
+        return String.format("@%s ", username);
     }
 
     private static synchronized int getOnlineCount() {

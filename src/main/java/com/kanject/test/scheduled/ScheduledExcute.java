@@ -23,10 +23,10 @@ public class ScheduledExcute {
 //    cron表达式格式：
 //    {秒数} {分钟} {小时} {日期} {月份} {星期} {年份(可为空)}
 
-    @Scheduled(cron = "0,10,20,30,40,50 * * * * ?")
-    public void checkUpdate() {
-        log.info("The latest version is {}", version++);
-//        log.info("The latest version is {}", Counter.add(1));
-        UserServerEndpoint.messagePush("Hey, you guys!");
-    }
+//    @Scheduled(cron = "0,10,20,30,40,50 * * * * ?")
+//    public void checkUpdate() {
+//        log.info("The latest version is {}", version++);
+////        log.info("The latest version is {}", Counter.add(1));
+//        UserServerEndpoint.messagePush("Hey, you guys!");
+//    }
 }

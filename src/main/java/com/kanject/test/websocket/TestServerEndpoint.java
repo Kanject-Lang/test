@@ -20,17 +20,24 @@ import javax.websocket.server.ServerEndpoint;
 @ServerEndpoint("/ws/test")//把当前类标识成一个WebSocket的服务端
 public class TestServerEndpoint {
 
+    /**
+     * 连接建立成功调用的方法
+     */
     @OnOpen
     public void onOpen() {
         log.info("TestServerEndpoint is on open.");
     }
 
+    /**
+     * 连接关闭调用的方法
+     */
     @OnClose
     public void onClose() {
         log.info("TestServerEndpoint is on close.");
     }
 
     /**
+     * 发生错误时调用
      * OnError方法必须要有Throwable参数，否则抛：
      *  javax.websocket.DeploymentException: No Throwable parameter was present on the method [onError] of class [..TestServerEndpoint] that was annotated with OnError
      */
@@ -39,7 +46,8 @@ public class TestServerEndpoint {
         log.info("TestServerEndpoint is on error =====> {}", error.getMessage());
     }
 
-    /** @OnMessage 方法必须要有参数
+    /** 收到客户端消息后调用的方法
+     *  @OnMessage 方法必须要有参数
      *  否则提示： @OnMessage method must have parameters */
     @OnMessage
     public void onMessage(String message) {
