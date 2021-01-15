@@ -6,6 +6,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * TODO
  *
@@ -18,15 +21,24 @@ public class ScheduledExcute {
 
     private static Integer version = new Integer(1);
 
-    private static Integer fibonacci = new Integer(0);
+    /**
+     * cron表达式格式：
+     * {秒数} {分钟} {小时} {日期} {月份} {星期} {年份(可为空)}
+     * 参考: https://www.cnblogs.com/softidea/p/5833248.html
+     */
 
-//    cron表达式格式：
-//    {秒数} {分钟} {小时} {日期} {月份} {星期} {年份(可为空)}
+    @Scheduled(cron = "0 0 0 * * ?")
+    public void checkUpdate() {
+        log.info("The latest version is {}", version++);
+        log.info("The latest version is {}", Counter.add(1));
+    }
 
-//    @Scheduled(cron = "0,10,20,30,40,50 * * * * ?")
-//    public void checkUpdate() {
-//        log.info("The latest version is {}", version++);
-////        log.info("The latest version is {}", Counter.add(1));
-//        UserServerEndpoint.messagePush("Hey, you guys!");
-//    }
+    /**
+     * 聊天室-整点报时
+     */
+    @Scheduled(cron = "0 0 0 * * ?")
+    public void hourlyChime() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        UserServerEndpoint.messagePush(sdf.format(new Date()));
+    }
 }
