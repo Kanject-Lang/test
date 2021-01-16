@@ -11,6 +11,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,6 +25,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/user")
 @Slf4j
+@Validated
 public class UserController {
 
     @GetMapping("/sayHello")
@@ -59,5 +62,17 @@ public class UserController {
     public TestResult valid3(@Validated @RequestBody User user) {
             log.info("USER ADD SUCCESS ===> {}", user);
             return TestResult.ok(user);
+    }
+
+    @GetMapping("/valid4")
+    public TestResult valid4(@Validated User user) {
+        log.info("USER ADD SUCCESS ===> {}", user);
+        return TestResult.ok(user);
+    }
+
+    @GetMapping("/valid5/{username}")
+    public TestResult valid5(@PathVariable("username") @Size(max = 10, min = 3, message = "username必须在3-10字符之间") String username) {
+        log.info("USER ADD SUCCESS ===> {}", username);
+        return TestResult.ok(String.format("username: %s", username));
     }
 }
