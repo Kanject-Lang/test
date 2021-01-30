@@ -1,0 +1,33 @@
+2021-01-30 11:16:16,325 INFO (StartupInfoLogger.java:50)- Starting TestApplication on Kangject-Lang with PID 5492 (D:\workspace_test\test\target\classes started by ASUS in D:\workspace_test\test)
+2021-01-30 11:16:16,325 INFO (SpringApplication.java:648)- No active profile set, falling back to default profiles: default
+2021-01-30 11:16:19,735 INFO (StartupInfoLogger.java:59)- Started TestApplication in 3.8 seconds (JVM running for 5.989)
+2021-01-30 11:19:22,209 INFO (StartupInfoLogger.java:50)- Starting TestApplication on Kangject-Lang with PID 3920 (D:\workspace_test\test\target\classes started by ASUS in D:\workspace_test\test)
+2021-01-30 11:19:22,209 INFO (SpringApplication.java:648)- No active profile set, falling back to default profiles: default
+2021-01-30 11:19:25,656 INFO (StartupInfoLogger.java:59)- Started TestApplication in 3.887 seconds (JVM running for 6.04)
+2021-01-30 11:20:54,613 INFO (StartupInfoLogger.java:50)- Starting TestApplication on Kangject-Lang with PID 1580 (D:\workspace_test\test\target\classes started by ASUS in D:\workspace_test\test)
+2021-01-30 11:20:54,613 INFO (SpringApplication.java:648)- No active profile set, falling back to default profiles: default
+2021-01-30 11:20:58,124 INFO (StartupInfoLogger.java:59)- Started TestApplication in 3.873 seconds (JVM running for 6.04)
+2021-01-30 11:21:28,261 INFO (StartupInfoLogger.java:50)- Starting TestApplication on Kangject-Lang with PID 2144 (D:\workspace_test\test\target\classes started by ASUS in D:\workspace_test\test)
+2021-01-30 11:21:28,271 INFO (SpringApplication.java:648)- No active profile set, falling back to default profiles: default
+2021-01-30 11:21:31,491 INFO (StartupInfoLogger.java:59)- Started TestApplication in 3.6 seconds (JVM running for 5.603)
+2021-01-30 11:22:00,992 INFO (StartupInfoLogger.java:50)- Starting TestApplication on Kangject-Lang with PID 7360 (D:\workspace_test\test\target\classes started by ASUS in D:\workspace_test\test)
+2021-01-30 11:22:01,002 INFO (SpringApplication.java:648)- No active profile set, falling back to default profiles: default
+2021-01-30 11:22:04,272 INFO (StartupInfoLogger.java:59)- Started TestApplication in 3.61 seconds (JVM running for 5.703)
+2021-01-30 11:22:40,080 INFO (StartupInfoLogger.java:50)- Starting TestApplication on Kangject-Lang with PID 2268 (D:\workspace_test\test\target\classes started by ASUS in D:\workspace_test\test)
+2021-01-30 11:22:40,080 INFO (SpringApplication.java:648)- No active profile set, falling back to default profiles: default
+2021-01-30 11:22:43,411 INFO (StartupInfoLogger.java:59)- Started TestApplication in 3.671 seconds (JVM running for 5.722)
+2021-01-30 11:23:10,052 INFO (StartupInfoLogger.java:50)- Starting TestApplication on Kangject-Lang with PID 4900 (D:\workspace_test\test\target\classes started by ASUS in D:\workspace_test\test)
+2021-01-30 11:23:10,062 INFO (SpringApplication.java:648)- No active profile set, falling back to default profiles: default
+2021-01-30 11:23:13,022 INFO (StartupInfoLogger.java:59)- Started TestApplication in 3.368 seconds (JVM running for 5.481)
+2021-01-30 11:31:50,750 INFO (StartupInfoLogger.java:50)- Starting TestApplication on Kangject-Lang with PID 6948 (D:\workspace_test\test\target\classes started by ASUS in D:\workspace_test\test)
+2021-01-30 11:31:50,750 INFO (SpringApplication.java:648)- No active profile set, falling back to default profiles: default
+2021-01-30 11:31:53,700 INFO (StartupInfoLogger.java:59)- Started TestApplication in 3.303 seconds (JVM running for 5.304)
+2021-01-30 11:32:25,623 INFO (StartupInfoLogger.java:50)- Starting TestApplication on Kangject-Lang with PID 13200 (D:\workspace_test\test\target\classes started by ASUS in D:\workspace_test\test)
+2021-01-30 11:32:25,623 INFO (SpringApplication.java:648)- No active profile set, falling back to default profiles: default
+2021-01-30 11:32:28,517 INFO (StartupInfoLogger.java:59)- Started TestApplication in 3.254 seconds (JVM running for 5.257)
+2021-01-30 11:32:42,959 INFO (StartupInfoLogger.java:50)- Starting TestApplication on Kangject-Lang with PID 13484 (D:\workspace_test\test\target\classes started by ASUS in D:\workspace_test\test)
+2021-01-30 11:32:42,959 INFO (SpringApplication.java:648)- No active profile set, falling back to default profiles: default
+2021-01-30 11:32:46,259 INFO (StartupInfoLogger.java:59)- Started TestApplication in 3.662 seconds (JVM running for 5.684)
+2021-01-30 11:33:18,772 INFO (StartupInfoLogger.java:50)- Starting TestApplication on Kangject-Lang with PID 15256 (D:\workspace_test\test\target\classes started by ASUS in D:\workspace_test\test)
+2021-01-30 11:33:18,772 INFO (SpringApplication.java:648)- No active profile set, falling back to default profiles: default
+2021-01-30 11:33:22,037 INFO (StartupInfoLogger.java:59)- Started TestApplication in 3.635 seconds (JVM running for 5.719)
